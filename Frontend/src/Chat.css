@@ -1,0 +1,131 @@
+.chat-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+/* Welcome screen */
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 12px;
+    padding: 2rem;
+    text-align: center;
+    color: #b4b4b4;
+}
+
+.welcome-icon {
+    font-size: 2.5rem;
+    color: #339cff;
+    background: rgba(51, 156, 255, 0.1);
+    height: 64px;
+    width: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.welcome h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ececec;
+}
+
+.welcome p {
+    font-size: 0.9rem;
+    color: #6b6b6b;
+}
+
+/* Messages */
+.chats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 760px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+}
+
+.userDiv {
+    display: flex;
+    justify-content: flex-end;
+    margin: 6px 0;
+}
+
+.gptDiv {
+    display: flex;
+    justify-content: flex-start;
+    margin: 6px 0;
+}
+
+.userMessage {
+    background-color: #2f2f2f;
+    padding: 12px 18px;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 0.9rem;
+    max-width: 70%;
+    line-height: 1.5;
+    color: #ececec;
+}
+
+.gpt-message {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    max-width: 90%;
+}
+
+.gpt-avatar {
+    background: rgba(51, 156, 255, 0.15);
+    color: #339cff;
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.gpt-content {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #ececec;
+    text-align: left;
+}
+
+.gpt-content p {
+    margin-bottom: 0.5rem;
+}
+
+.gpt-content ul, .gpt-content ol {
+    padding-left: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.gpt-content pre {
+    white-space: pre-wrap;
+    margin: 0.6rem 0;
+}
+
+.gpt-content code:not(pre code) {
+    background: rgba(255,255,255,0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.hljs {
+    border-radius: 10px !important;
+}
