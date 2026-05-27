@@ -5,7 +5,7 @@ import { useAuth } from "./AuthContext.jsx";
 import { useContext, useState, useEffect, useRef } from "react";
 import { ScaleLoader } from "react-spinners";
 
-function ChatWindow() {
+function ChatWindow({ onMenuClick }) {
     const {
         prompt, setPrompt,
         reply, setReply,
@@ -82,9 +82,10 @@ function ChatWindow() {
         <div className="chatWindow">
             <div className="navbar">
                 <div className="navbar-left">
-                    <span className="model-label">
-                        AgentGPT <i className="fa-solid fa-chevron-down"></i>
-                    </span>
+                    <button className="menu-btn" onClick={onMenuClick} title="Menu">
+                        <i className="fa-solid fa-bars"></i>
+                    </button>
+                    <span className="model-label">AgentGPT</span>
                 </div>
                 <div className="navbar-right" ref={dropdownRef}>
                     <div

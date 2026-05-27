@@ -4,7 +4,7 @@ import { MyContext } from "./MyContext.jsx";
 import { useAuth } from "./AuthContext.jsx";
 import { v1 as uuidv1 } from "uuid";
 
-function Sidebar() {
+function Sidebar({ isOpen, onClose }) {
     const {
         allThreads, setAllThreads,
         currThreadId, setCurrThreadId,
@@ -36,6 +36,7 @@ function Sidebar() {
         setReply(null);
         setCurrThreadId(uuidv1());
         setPrevChats([]);
+        onClose();
     };
 
     const changeThread = async (newThreadId) => {
@@ -52,6 +53,7 @@ function Sidebar() {
         } catch (err) {
             console.error("Failed to load thread:", err);
         }
+        onClose();
     };
 
     const deleteThread = async (e, threadId) => {
@@ -69,51 +71,57 @@ function Sidebar() {
     };
 
     return (
-        <aside className="sidebar">
-            <div className="sidebar-top">
-                <button className="new-chat-btn" onClick={createNewChat} title="New Chat">
-                    <span className="app-name">AgentGPT</span>
-                    <i className="fa-solid fa-pen-to-square"></i>
-                </button>
-            </div>
-
-            <div className="sidebar-history">
-                <p className="history-label">Recent</p>
-                <ul className="history">
-                    {allThreads?.map((thread, idx) => (
-                        <li
-                            key={idx}
-                            onClick={() => changeThread(thread.threadId)}
-                            className={`history-item ${thread.threadId === currThreadId ? "active" : ""}`}
-                            title={thread.title}
-                        >
-                            <i className="fa-regular fa-message thread-icon"></i>
-                            <span className="thread-title">{thread.title}</span>
-                            <button
-                                className="delete-btn"
-                                onClick={(e) => deleteThread(e, thread.threadId)}
-                                title="Delete"
-                            >
-                                <i className="fa-solid fa-trash"></i>
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div className="sidebar-footer">
-                <div className="user-info" onClick={logout} title="Click to logout">
-                    <div className="user-avatar">
-                        <i className="fa-solid fa-user"></i>
-                    </div>
-                    <div className="user-details">
-                        <span className="user-name">{user?.name}</span>
-                        <span className="user-email">{user?.email}</span>
-                    </div>
-                    <i className="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
+        <>
+            <div className={`sidebar-overlay ${isOpen ? "open" : ""}`} onClick={onClose} />
+            <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+                <div className="sidebar-top">
+                    <button className="new-chat-btn" onClick={createNewChat} title="New Chat">
+                        <span className="app-name">AgentGPT</span>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button className="sidebar-close-btn" onClick={onClose}>
+                        <i className="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
-            </div>
-        </aside>
+
+                <div className="sidebar-history">
+                    <p className="history-label">Recent</p>
+                    <ul className="history">
+                        {allThreads?.map((thread, idx) => (
+                            <li
+                                key={idx}
+                                onClick={() => changeThread(thread.threadId)}
+                                className={`history-item ${thread.threadId === currThreadId ? "active" : ""}`}
+                                title={thread.title}
+                            >
+                                <i className="fa-regular fa-message thread-icon"></i>
+                                <span className="thread-title">{thread.title}</span>
+                                <button
+                                    className="delete-btn"
+                                    onClick={(e) => deleteThread(e, thread.threadId)}
+                                    title="Delete"
+                                >
+                                    <i className="fa-solid fa-trash"></i>
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="sidebar-footer">
+                    <div className="user-info" onClick={logout} title="Click to logout">
+                        <div className="user-avatar">
+                            <i className="fa-solid fa-user"></i>
+                        </div>
+                        <div className="user-details">
+                            <span className="user-name">{user?.name}</span>
+                            <span className="user-email">{user?.email}</span>
+                        </div>
+                        <i className="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
+                    </div>
+                </div>
+            </aside>
+        </>
     );
 }
 

@@ -4,4 +4,11 @@
     width: 100vw;
     overflow: hidden;
     background-color: #212121;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .app {
+        flex-direction: column;
+    }
 }

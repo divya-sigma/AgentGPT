@@ -15,6 +15,7 @@ function App() {
   const [prevChats, setPrevChats] = useState([]);
   const [newChat, setNewChat] = useState(true);
   const [allThreads, setAllThreads] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const providerValues = {
     prompt, setPrompt,
@@ -30,8 +31,8 @@ function App() {
   return (
     <div className='app'>
       <MyContext.Provider value={providerValues}>
-        <Sidebar />
-        <ChatWindow />
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <ChatWindow onMenuClick={() => setSidebarOpen(true)} />
       </MyContext.Provider>
     </div>
   );

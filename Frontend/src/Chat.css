@@ -129,3 +129,30 @@
 .hljs {
     border-radius: 10px !important;
 }
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .chats {
+        padding: 0.8rem 1rem;
+    }
+
+    .userMessage {
+        max-width: 85%;
+        font-size: 0.85rem;
+        padding: 10px 14px;
+    }
+
+    .gpt-content {
+        font-size: 0.85rem;
+    }
+
+    .welcome h1 {
+        font-size: 1.2rem;
+    }
+
+    .welcome-icon {
+        height: 52px;
+        width: 52px;
+        font-size: 2rem;
+    }
+}
