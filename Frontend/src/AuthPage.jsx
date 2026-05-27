@@ -25,7 +25,7 @@ function AuthPage() {
             : { name: form.name, email: form.email, password: form.password };
 
         try {
-            const response = await fetch(`https://agentgpt-1-86nm.onrender.com${endpoint}`, {
+            const response = await fetch(`https://agentgpt-q49b.onrender.com${endpoint}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
